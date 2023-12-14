@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 import Register from '../authentification/register';
 import '../styling/login.css';
 import mello from '../images/mello.svg';
 
-async function login(username, password) {
+async function login(username, password, navigate) {
+
     try {
 
         axios.post('http://localhost:8080/users/getUserByUsernameAndPassword',
@@ -22,9 +24,11 @@ async function login(username, password) {
         ).then(res => {
                 console.log(res);
                 let loginToken = res.data;
-                sessionStorage.setItem('loginToken', loginToken)
-                sessionStorage.setItem('username', username)
-                // window.location.replace('http://localhost:3000/home')
+                sessionStorage.setItem('loginToken', loginToken);
+                sessionStorage.setItem('username', username);
+                navigate("/home");
+                // window.location.replace('http://localhost:3000/home');
+
             }
         )
     } catch (error) {
@@ -36,11 +40,11 @@ export default function Login() {
 
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
+    let navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const response = await login(username, password);
-        // console.log(response);
+        const response = await login(username, password, navigate);
     }
 
 

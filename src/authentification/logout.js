@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import {Button} from "@material-ui/core";
 import {Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import {useNavigate} from "react-router-dom";
 
 export default function Logout() {
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -15,8 +17,9 @@ export default function Logout() {
 
     const handleCloseConfirm = () => {
         sessionStorage.clear();
-        window.location.reload();
         handleClose();
+        navigate('/');
+
     };
 
     return (
@@ -24,30 +27,35 @@ export default function Logout() {
         <Button className={"logout-btn"} onClick={handleClickOpen}
                 style={{
                     textTransform: "none",
-                    color: "#EEEEEE",
+                    color: "#baab6a",
                     alignItems: "center",
-                    border: "2px solid #EEEEEE"
+                    border: "2px solid #baab6a"
                 }}>
             Logout
         </Button>
-        <Dialog open={open} onClose={handleClose}>
+        <Dialog open={open}
+                style={{
+                    backgroundColor: "#204b5e"
+                }}
+                onClose={handleClose}>
             <DialogTitle style={{
-                color: "#476072",
+                backgroundColor: "#baab6a",
+                color: "#204b5e",
                 textAlign: "center"
             }}>
-                {"Vrei sa iesi din aplicatie?"}</DialogTitle>
-            <DialogContent>
+                {"Are you sure you want to log out?"}</DialogTitle>
+            <DialogContent style={{backgroundColor: "#baab6a"}}>
                 <DialogActions>
                     <Button style={{
                         textTransform: "none",
-                        color: "#476072"
+                        color: "#204b5e"
                     }}
-                            onClick={handleCloseConfirm}>Da</Button>
+                            onClick={handleCloseConfirm}>Yes</Button>
                     <Button style={{
                         textTransform: "none",
-                        color: "#476072"
+                        color: "#204b5e"
                     }}
-                            onClick={handleClose}>Nu</Button>
+                            onClick={handleClose}>No</Button>
                 </DialogActions>
             </DialogContent>
         </Dialog>
