@@ -4,7 +4,7 @@ class authenticationService {
 
     registerUser(firstName, lastName, email, username, password, role) {
         axios.post(
-            'http://localhost:8080/users/createUser',
+            'http://localhost:8080/api/v1/auth/signup',
             {
                 'firstName': firstName,
                 'lastName': lastName,

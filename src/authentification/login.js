@@ -5,13 +5,13 @@ import Register from '../authentification/register';
 import '../styling/login.css';
 import mello from '../images/mello.svg';
 
-async function login(username, password, navigate) {
+async function login(email, password, navigate) {
 
     try {
-
-        axios.post('http://localhost:8080/users/getUserByUsernameAndPassword',
+        const response = await axios.post(
+            'http://localhost:8080/api/v1/auth/signin',
             {
-                "username": username,
+                "email": email,
                 "password": password
             },
             {
@@ -21,16 +21,14 @@ async function login(username, password, navigate) {
                     'Accept': 'application/json'
                 }
             }
-        ).then(res => {
-                console.log(res);
-                let loginToken = res.data;
-                sessionStorage.setItem('loginToken', loginToken);
-                sessionStorage.setItem('username', username);
-                navigate("/home");
-                // window.location.replace('http://localhost:3000/home');
+        );
 
-            }
-        )
+        const {token, refreshToken} = response.data;
+
+        sessionStorage.setItem('refreshToken', refreshToken);
+        sessionStorage.setItem('token', token);
+        navigate("/home");
+
     } catch (error) {
         console.error(error.response.data);
     }
@@ -38,13 +36,13 @@ async function login(username, password, navigate) {
 
 export default function Login() {
 
-    const [username, setUsername] = useState();
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     let navigate = useNavigate();
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const response = await login(username, password, navigate);
+        const response = await login(email, password, navigate);
     }
 
 
@@ -59,7 +57,7 @@ export default function Login() {
             <form className={"login-form"} method={"post"} onSubmit={handleSubmit}>
                 <div className={"txt-field"}>
                     <span></span>
-                    <input type={"text"} onChange={e => setUsername(e.target.value)} required={true}/>
+                    <input type={"text"} onChange={e => setEmail(e.target.value)} required={true}/>
                     <label>Username:</label>
                 </div>
                 <div className={"txt-field"}>
