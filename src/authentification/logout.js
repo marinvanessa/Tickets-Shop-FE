@@ -24,8 +24,11 @@ export default function Logout() {
 
     return (
         <body className={"logout-body"}>
-        <Button className={"logout-btn"} onClick={handleClickOpen}
+        <Button className={"floating-button-container"} onClick={handleClickOpen}
                 style={{
+                    position: "fixed",
+                    bottom: "20px",
+                    right: "20px",
                     textTransform: "none",
                     color: "#baab6a",
                     alignItems: "center",
