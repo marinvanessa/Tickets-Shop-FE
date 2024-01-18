@@ -22,10 +22,10 @@ export default function Home() {
                         sessionStorage.setItem('token', newAccessToken);
                     } catch (error) {
                         console.error('Error when refreshing the access token:', error);
-                        navigate('/login');
+                        navigate('/');
                     }
                 } else {
-                    navigate('/login');
+                    navigate('/');
                 }
             }
         };

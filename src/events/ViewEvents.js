@@ -5,6 +5,8 @@ import "../styling/ViewEvents.css";
 import Logout from "../authentification/logout";
 import {Link, useNavigate} from 'react-router-dom';
 import tickets from "./Tickets";
+import {isTokenExpired} from "../jwt/jwtUtils";
+import {refreshAccessToken} from "../authentification/refreshAccessToken";
 
 const MovieCard = ({ event }) => {
     const history = useNavigate();
@@ -55,9 +57,39 @@ const MovieCard = ({ event }) => {
 
 const EventTable = () => {
     const [events, setEvents] = useState([]);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
+
+        const checkTokenExpiration = async () => {
+            const accessToken = sessionStorage.getItem('token');
+            const refreshToken = sessionStorage.getItem('refreshToken');
+
+            if (accessToken && isTokenExpired(accessToken)) {
+                console.log('Token expired');
+
+                if (refreshToken) {
+                    try {
+                        const newAccessToken = await refreshAccessToken(refreshToken);
+                        console.log(newAccessToken)
+                        sessionStorage.setItem('token', newAccessToken);
+                    } catch (error) {
+                        console.error('Error when refreshing the access token:', error);
+                        navigate('/login');
+
+
+                    }
+                } else {
+                    navigate('/login');
+                }
+            }
+        };
         const fetchEvents = async () => {
+            checkTokenExpiration();
+            const tokenCheckInterval = setInterval(() => {
+                checkTokenExpiration();
+            }, 20000);
             try {
                 const response = await axios.get('http://localhost:8080/api/v1/auth/getAllEvents');
                 setEvents(response.data);

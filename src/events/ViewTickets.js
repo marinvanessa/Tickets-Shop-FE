@@ -1,17 +1,51 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import "../styling/ViewTickets.css";
 import addCart from "../components/addCart";
+import {isTokenExpired} from "../jwt/jwtUtils";
+import {refreshAccessToken} from "../authentification/refreshAccessToken";
 
 const ViewTickets = () => {
     const [tickets, setTickets] = useState([]);
     const [event, setEvent] = useState([]);
     const {eventId} = useParams();
     const userId = sessionStorage.getItem('userId');
+    const navigate = useNavigate();
+
 
     useEffect(() => {
+        const checkTokenExpiration = async () => {
+            const accessToken = sessionStorage.getItem('token');
+            const refreshToken = sessionStorage.getItem('refreshToken');
+
+            if (accessToken && isTokenExpired(accessToken)) {
+                console.log('Token expired');
+
+                if (refreshToken) {
+                    try {
+                        const newAccessToken = await refreshAccessToken(refreshToken);
+                        console.log(newAccessToken)
+                        sessionStorage.setItem('token', newAccessToken);
+                    } catch (error) {
+                        console.error('Error when refreshing the access token:', error);
+                        navigate('/login');
+
+
+                    }
+                } else {
+                    navigate('/login');
+                }
+            }
+        };
+
+
         const fetchTickets = async () => {
+            checkTokenExpiration();
+            const tokenCheckInterval = setInterval(() => {
+                checkTokenExpiration();
+            }, 20000);
+
             const token = sessionStorage.getItem('token');
             const events = JSON.parse(sessionStorage.getItem('events'));
             if (events) {
@@ -32,11 +66,13 @@ const ViewTickets = () => {
 
 
             }
+
+            return () => clearInterval(tokenCheckInterval);
         };
 
 
         fetchTickets();
-    }, [eventId]);
+    }, [eventId, navigate]);
 
     return (
         <div>
@@ -75,7 +111,6 @@ const ViewTickets = () => {
                             <div className="fix"></div>
                             <button style={{backgroundColor: "transparent"}} className="tickets">
                                 <Link to={`/addCart/${userId}/${ticket.ticketId}`}>Add</Link>
-
                             </button>
                         </div>
                     </div>
