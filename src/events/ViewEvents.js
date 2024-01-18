@@ -23,14 +23,6 @@ const MovieCard = ({ event }) => {
                 <div className="movie_desc">
                     <p className="text">
                         {event.description}
-                        {event.ticketList.map((ticket) => {
-                            <div className="item" key={ticket.id}>
-
-                                <div className="item-left">
-                                    <p className="event">{ticket.price}</p>
-                                </div>
-                            </div>
-                        })}
                     </p> <br />
                     <p className="text">
                         {event.location && (
@@ -50,7 +42,7 @@ const MovieCard = ({ event }) => {
                 <div className="movie_social">
                     <ul>
                         <li>
-                            <Link to={`/tickets/${event.eventId}`}>Contact</Link>
+                            <Link to={`/tickets/${event.eventId}`}>Tickets</Link>
                             {/*<i onClick={() => handleRedirect(event.eventId)}>aa</i>*/}
                         </li>
                     </ul>
@@ -69,6 +61,7 @@ const EventTable = () => {
             try {
                 const response = await axios.get('http://localhost:8080/api/v1/auth/getAllEvents');
                 setEvents(response.data);
+                sessionStorage.setItem("events", JSON.stringify(response.data));
             } catch (error) {
                 console.error('Error fetching events:', error);
             }
@@ -79,7 +72,7 @@ const EventTable = () => {
 
     return (
         <div>
-            <h1 style={{ textAlign: "center" }}>Concerts & Festivals</h1>
+            <h1 style={{ textAlign: "center", fontFamily: "Hervetica", marginBottom: "20px"}}>Concerts & Festivals</h1>
             <div className={"floating-button-container"}><Logout /></div>
             {events.map((event) => (<MovieCard key={event.id} event={event} />))}
 

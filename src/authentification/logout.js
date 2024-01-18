@@ -30,33 +30,33 @@ export default function Logout() {
                     bottom: "20px",
                     right: "20px",
                     textTransform: "none",
-                    color: "#baab6a",
+                    color: "#111",
                     alignItems: "center",
-                    border: "2px solid #baab6a"
+                    border: "2px solid #111"
                 }}>
             Logout
         </Button>
         <Dialog open={open}
                 style={{
-                    backgroundColor: "#204b5e"
+                    backgroundColor: "#999"
                 }}
                 onClose={handleClose}>
             <DialogTitle style={{
-                backgroundColor: "#baab6a",
-                color: "#204b5e",
+                backgroundColor: "#111",
+                color: "#999",
                 textAlign: "center"
             }}>
                 {"Are you sure you want to log out?"}</DialogTitle>
-            <DialogContent style={{backgroundColor: "#baab6a"}}>
+            <DialogContent style={{backgroundColor: "#111"}}>
                 <DialogActions>
                     <Button style={{
                         textTransform: "none",
-                        color: "#204b5e"
+                        color: "#999"
                     }}
                             onClick={handleCloseConfirm}>Yes</Button>
                     <Button style={{
                         textTransform: "none",
-                        color: "#204b5e"
+                        color: "#999"
                     }}
                             onClick={handleClose}>No</Button>
                 </DialogActions>

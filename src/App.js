@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from "./components/home";
 import ViewEvents from "./events/ViewEvents";
 import ViewTickets from "./events/ViewTickets";
+import AddCart from "./components/addCart";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
                     <Route path={"/home"} element={<Home/>}/>
                     <Route path={"/events"} element={<ViewEvents/>}/>
                     <Route path="/tickets/:eventId" element={<ViewTickets />} />
+                    <Route path="/addCart/:userId/:ticketId" element={<AddCart />} />
 
                 </Routes>
             </div>

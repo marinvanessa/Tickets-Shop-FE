@@ -2,14 +2,13 @@ import axios from "axios";
 
 class authenticationService {
 
-    registerUser(firstName, lastName, email, username, password, role) {
+    registerUser(firstName, lastName, email, password, role) {
         axios.post(
             'http://localhost:8080/api/v1/auth/signup',
             {
                 'firstName': firstName,
                 'lastName': lastName,
                 'email': email,
-                'username': username,
                 'password': password,
             },
             {

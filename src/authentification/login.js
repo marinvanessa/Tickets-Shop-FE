@@ -23,11 +23,12 @@ async function login(email, password, navigate) {
             }
         );
 
-        const {token, refreshToken} = response.data;
+        const {userId, token, refreshToken} = response.data;
 
         sessionStorage.setItem('refreshToken', refreshToken);
         sessionStorage.setItem('token', token);
-        navigate("/home");
+        sessionStorage.setItem('userId', userId);
+        navigate("/events");
 
     } catch (error) {
         console.error(error.response.data);
@@ -48,7 +49,7 @@ export default function Login() {
 
     return (
         <body className={"login-main-page"}>
-        <h1 className={"mess"} style={{color: "#baab6a"}}>TicketFest</h1>
+        <h1 className={"mess"} style={{color: "#111"}}>TicketFest</h1>
         <img className={"mello"} src={mello} alt="mello"/>
         <div className={"login-box"}>
             <div className={"title-img"}>

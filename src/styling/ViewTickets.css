@@ -3,7 +3,8 @@
     margin:0;
     padding:0;
 }
-body {
+
+body, html{
     background:#DDD;
     font-family: 'Inknut Antiqua', serif;
     font-family: 'Ravi Prakash', cursive;
@@ -14,7 +15,7 @@ body {
 div.container {
     max-width: 1350px;
     margin: 0 auto;
-    overflow: hidden
+    overflow: hidden;
 }
 .upcomming {
     font-size: 45px;
@@ -57,9 +58,9 @@ div.container {
     right: -35px;
 }
 .container .item-right .num {
-    font-size: 60px;
+    font-size: 40px;
     text-align: center;
-    color: #111
+    color: #111;
 }
 .container .item-right .day, .container .item-left .event {
     color: #555;

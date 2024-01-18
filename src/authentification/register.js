@@ -40,14 +40,14 @@ export default function Register() {
             </Button>
             <Dialog className={"dialog-box"}
                     style={{
-                        backgroundColor: "#204b5e",
+                        backgroundColor: "#111",
                     }}
                     open={open} onClose={handleClose}>
                 <DialogTitle className={"title-register"}
                              style={{
-                                 backgroundColor: "#baab6a",
-                                 color: "#204b5e",
-                                 borderBottom: "2px solid #204b5e",
+                                 backgroundColor: "#999",
+                                 color: "#111",
+                                 borderBottom: "2px solid #999",
                                  textAlign: "center",
                              }}>
                     Register</DialogTitle>
@@ -55,7 +55,7 @@ export default function Register() {
                     style={{
                         width:"400px",
                         height: "500px",
-                        backgroundColor: "#baab6a"
+                        backgroundColor: "#999"
                     }}
                     className={"dialog-center"}>
                     <TextField
@@ -69,7 +69,7 @@ export default function Register() {
                         fullWidth={true}
                         InputLabelProps={{
                             style: {
-                                color: "#204b5e",
+                                color: "#111",
                                 fontSize: "14px",
                                 fontFamily: "Hervetica"
                             }
@@ -86,7 +86,7 @@ export default function Register() {
                         fullWidth={true}
                         InputLabelProps={{
                             style: {
-                                color: "#204b5e",
+                                color: "#111",
                                 fontSize: "14px",
                                 fontFamily: "Hervetica"
                             }
@@ -103,7 +103,7 @@ export default function Register() {
                         fullWidth={true}
                         InputLabelProps={{
                             style: {
-                                color: "#204b5e",
+                                color: "#111",
                                 fontSize: "14px",
                                 fontFamily: "Hervetica"
                             }
@@ -120,7 +120,7 @@ export default function Register() {
                         fullWidth={true}
                         InputLabelProps={{
                             style: {
-                                color: "#204b5e",
+                                color: "#111",
                                 fontSize: "14px",
                                 fontFamily: "Hervetica"
                             }
@@ -138,7 +138,7 @@ export default function Register() {
                         fullWidth={true}
                         InputLabelProps={{
                             style: {
-                                color: "#204b5e",
+                                color: "#999",
                                 fontSize: "14px",
                                 fontFamily: "Hervetica"
                             }
@@ -147,12 +147,12 @@ export default function Register() {
 
                 <DialogActions
                     style={{
-                        backgroundColor: "#baab6a"
+                        backgroundColor: "#111"
                     }}>
                     <Button
                         style={{
-                            backgroundColor: "#204b5e",
-                            color: "#baab6a",
+                            backgroundColor: "#999",
+                            color: "#111",
                             height: "30px",
                         }}
                         className={"button-send"}
@@ -160,8 +160,8 @@ export default function Register() {
                         Send</Button>
                     <Button
                         style={{
-                            backgroundColor: "#204b5e",
-                            color: "#baab6a",
+                            backgroundColor: "#999",
+                            color: "#111",
                             height: "30px"
                         }}
                         className={"button-cancel"}

@@ -3,7 +3,7 @@
     width: 100%;
     padding: 0;
     margin: 0;
-    background-color: #204b5e;
+    background-color: #999;
     overflow: hidden;
 
 }
@@ -11,7 +11,7 @@
     padding: 20px;
     margin-top: 0;
     text-align: center;
-    color: #204b5e ;
+    color: #999 ;
     font-family: Hervetica;
     font-size: 36px;
     font-weight: bold;
@@ -28,7 +28,7 @@
     transform: translate(-50%, -50%);
     width: 350px;
     height: 450px;
-    background: #baab6a;
+    background: #111;
     border-radius: 10px;
 
 }
@@ -37,8 +37,8 @@
     display: flex;
     flex: 100%;
     font-family: Hervetica;
-    border-bottom: 2px solid #204b5e;
-    color: #204b5e;
+    border-bottom: 2px solid #999;
+    color: #999;
     padding-top: 10px;
     justify-content: center;
     align-items: center;
@@ -62,7 +62,7 @@
 
 form .txt-field {
     position: relative;
-    border-bottom: 2px solid #204b5e;
+    border-bottom: 2px solid #999;
     margin: 30px 0;
 }
 
@@ -75,7 +75,7 @@ form .txt-field {
     background: none;
     outline: none;
     font-family: Hervetica;
-    color: #204b5e;
+    color: #999;
 }
 
 .txt-field label {
@@ -84,7 +84,7 @@ form .txt-field {
     left: 0;
     font-family: Hervetica;
     font-size: 16px;
-    color: #204b5e;
+    color: #999;
     transition: .5s;
     transform: translateY(-50%);
 }
@@ -96,13 +96,13 @@ form .txt-field {
     left: 0;
     width: 0;
     height: 2px;
-    background: #204b5e;
+    background: #999;
 }
 
 .txt-field input:focus ~ label,
 .txt-field input:valid ~ label {
     top: -5px;
-    color: #204b5e;
+    color: #999;
 }
 
 .txt-field input:focus ~ span::before,
@@ -112,26 +112,26 @@ form .txt-field {
 
 .login-button {
     width: 100%;
-    background: #204b5e;
+    background: #999;
     border: 2px solid;
     border-radius: 10px;
     height: 30px;
     outline: none;
     font-size: 16px;
     font-family: Hervetica;
-    color: #baab6a;
+    color: #111;
     font-weight: bold;
     cursor: pointer;
     margin: 30px 0 30px 0;
 }
 
 .login-button:hover {
-    border-color: #204b5e;
+    border-color: #999;
     transition: .5s;
 }
 
 .signup-link {
-    color: #204b5e;
+    color: #999;
     font-family: Hervetica;
     font-size: 14px;
     text-align: center;
